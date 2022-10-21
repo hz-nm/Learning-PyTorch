@@ -28,8 +28,8 @@ import gym      # ? An OpenAI toolkit for RL
 from gym.spaces import Box
 from gym.wrappers import FrameStack
 
-from nes_py.wrappers import JoypadSpace         # ! Not working currently as Visual Studio 14.0 or more is required.
-import gym_super_mario_bros
+# from nes_py.wrappers import JoypadSpace         # ! Not working currently as Visual Studio 14.0 or more is required.
+# import gym_super_mario_bros
 
 # ! Some Definitions to keep in mind,
 # ? Environment - The world that an agent reacts with and learns from.
@@ -40,15 +40,16 @@ import gym_super_mario_bros
 
 # %%
 # * Let's initialize the Super Mario Environment.
-if gym.__version__ < '0.26':
-    env = gym_super_mario_bros.make("SuperMarioBros-1-1-v0", new_step_api=True)
-else:
-    env = gym_super_mario_bros.make("SuperMarioBros-1-1-v0", render_mode='rgb', apply_api_compatibility=True)
+# if gym.__version__ < '0.26':
+#     env = gym_super_mario_bros.make("SuperMarioBros-1-1-v0", new_step_api=True)
+# else:
+#     env = gym_super_mario_bros.make("SuperMarioBros-1-1-v0", render_mode='rgb', apply_api_compatibility=True)
+env = ()        # tHIS is to get rid of the ERROR.
 
 # Limit the action space to
 #   0. walk right
 #   1. jump right
-env = JoypadSpace(env, [["right"], ["right", "A'"]])
+# env = JoypadSpace(env, [["right"], ["right", "A'"]])
 env.reset()
 
 next_state, reward, done, trunc, info = env.step(action=0)
