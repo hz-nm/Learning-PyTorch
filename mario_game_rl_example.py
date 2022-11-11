@@ -227,7 +227,7 @@ class Mario:
 
         def first_if_tuple(x):
             return x[0] if isinstance(x, tuple) else x
-        
+            
         state = first_if_tuple(state).__array__()
         next_state = first_if_tuple(next_state).__array__()
 
@@ -279,15 +279,13 @@ class Mario:
 
         return (td_est.mean().item, loss)
 
-
-        pass
     
     # ? TD ESTIMATE & TD LEARNING
     # ? Two values are involved in learning
     # ? TD ESTIMATE - Optimal Q* for a given state 's' is TDe = Q*_online(s, a)
     # ? TD TARGET - Aggregation of current reward and estimated Q* in the next state s' is
     # ?                         a' = argmaxQonline(s', a)
-    # ?                         TD_target = reward + discount x Q*+target(s', a')
+    # ?                         TD_target = reward + discount x Q*_target(s', a')
     # ? Since we don't know what next action a' will be, we use the action a' that maximizes Qonline in the next state s'
     # ! We use the @torch.no_grad() decorator on td_target() to disable gradient calculations here. (BECAUSE we don't need to backpropagate on THETAtarget)
     def td_estimate(self, state, action):
